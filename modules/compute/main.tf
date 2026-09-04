@@ -9,5 +9,6 @@ resource "aws_instance" "this" {
     Name        = "${var.project_name}-${var.environment}-ec2"
     Environment = var.environment
     ManagedBy   = "Terraform"
+    CIManaged   = "GitHub-Actions"
   }
 }
