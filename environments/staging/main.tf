@@ -24,7 +24,7 @@ data "aws_availability_zones" "available" {
 }
 
 data "aws_ami" "amazon_linux" {
-  most_recent = true
+  most_recent = false
   owners      = ["amazon"]
 
   filter {
@@ -36,17 +36,22 @@ data "aws_ami" "amazon_linux" {
     name   = "state"
     values = ["available"]
   }
+
+  filter {
+    name   = "image-id"
+    values = ["ami-06033d1583f2e66ec"]
+  }
 }
 
 module "network" {
   source = "../../modules/network"
 
-  project_name         = var.project_name
-  environment          = var.environment
-  vpc_cidr             = var.vpc_cidr
-  public_subnet_cidr   = var.public_subnet_cidr
-  availability_zone    = data.aws_availability_zones.available.names[0]
-  ssh_cidr_blocks      = var.ssh_cidr_blocks
+  project_name        = var.project_name
+  environment         = var.environment
+  vpc_cidr            = var.vpc_cidr
+  public_subnet_cidr  = var.public_subnet_cidr
+  availability_zone   = data.aws_availability_zones.available.names[0]
+  ssh_cidr_blocks     = var.ssh_cidr_blocks
 }
 
 module "compute" {
