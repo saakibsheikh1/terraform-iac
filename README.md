@@ -586,7 +586,7 @@ All infrastructure created for this project must be removed after the project ha
 
 
 
-```bash
+
 
 terraform destroy
 
@@ -614,6 +614,25 @@ The final project evidence should confirm that the test environment has been cle
 
 \## Author
 
+## Terraform Workflow
+
+The project follows a controlled Infrastructure as Code workflow:
+
+Code Change
+    ↓
+Terraform fmt
+    ↓
+Terraform validate
+    ↓
+Terraform plan
+    ↓
+Pull Request Review
+    ↓
+Merge to main
+    ↓
+Terraform Apply
+    ↓
+Drift Detection
 
 
 \*\*Sakib Sheikh\*\*
